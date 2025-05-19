@@ -3,10 +3,8 @@ const app = express();
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
-require("./controllers/Challenge");
 
 const PORT = process.env.PORT || 4000;
 dotenv.config();
@@ -16,7 +14,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    //origin: "http://localhost:3000",
     origin: "*",
     credentials: true,
   })
@@ -28,9 +25,6 @@ app.use(
   })
 );
 
-cloudinaryConnect();
-
-// Deafult Route
 app.get("/", (req, res) => {
   return res.json({
     success: true,
