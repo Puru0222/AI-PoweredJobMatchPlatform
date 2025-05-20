@@ -1,6 +1,8 @@
 import { toast } from "react-hot-toast";
 import { apiConnector } from "./apiConnector";
 import { endpoints } from "./apis";
+import { clearUser, setUser } from "../slices/userSlice";
+import { clearUserProfile, setUserProfile } from "../slices/userProfileSlice";
 
 const { SIGNUP_API, LOGIN_API } = endpoints;
 
@@ -32,15 +34,10 @@ export function login(email, password, navigate) {
         password,
       });
 
-      // if (!response.data.success) {
-      //   toast.error(response.data.message);
-      //   toast.dismiss(toastId);
-      //   return;
-      // }
+      console.log(response);
       toast.success("Login Successful");
-      //   dispatch(setToken(response.data.token));
-      //   dispatch(setUser(response.data.user));
-      //   localStorage.setItem("token", JSON.stringify(response.data.token));
+      dispatch(setUser(response.data.user));
+      // dispatch(setUserProfile(response.data.userProfile));
       navigate("/dashboard");
     } catch (error) {
       toast.error(
@@ -50,5 +47,15 @@ export function login(email, password, navigate) {
     } finally {
       toast.dismiss(toastId);
     }
+  };
+}
+
+export function logout(navigate) {
+  return (dispatch) => {
+    localStorage.removeItem("token");
+    dispatch(clearUser());
+    dispatch(clearUserProfile());
+    navigate("/login");
+    toast.success("Logged out successfully.");
   };
 }

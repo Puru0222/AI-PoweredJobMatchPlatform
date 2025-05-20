@@ -1,33 +1,34 @@
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   FaUser,
   FaBriefcase,
   FaSearch,
   FaBookmark,
-  FaRegBell,
-  FaCog,
   FaSignOutAlt,
   FaChevronLeft,
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { logout } from "../services/authAPI";
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout(navigate));
+  };
 
   const navigation = [
     { name: "Profile", path: "profile", icon: <FaUser /> },
     { name: "Find Jobs", path: "jobs", icon: <FaSearch /> },
     { name: "My Applications", path: "applications", icon: <FaBriefcase /> },
     { name: "Saved Jobs", path: "saved", icon: <FaBookmark /> },
-  ];
-
-  const secondaryNavigation = [
-    { name: "Settings", path: "settings", icon: <FaCog /> },
-    { name: "Logout", path: "/logout", icon: <FaSignOutAlt /> },
   ];
 
   const activeStyle = "bg-indigo-600 text-white";
@@ -99,12 +100,6 @@ const Sidebar = () => {
             >
               <span className="text-lg">{item.icon}</span>
               {!collapsed && <span className="ml-3">{item.name}</span>}
-
-              {!collapsed && item.path === "notifications" && (
-                <span className="ml-auto bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                  3
-                </span>
-              )}
             </NavLink>
           ))}
         </nav>
@@ -112,21 +107,15 @@ const Sidebar = () => {
         {/* Divider */}
         <div className="mx-4 my-2 border-t border-gray-800"></div>
 
-        {/* Secondary navigation */}
+        {/* Logout button */}
         <nav className="p-4 space-y-1">
-          {secondaryNavigation.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) => `
-                flex items-center px-3 py-3 rounded-lg transition-colors
-                ${isActive ? activeStyle : inactiveStyle}
-              `}
-            >
-              <span className="text-lg">{item.icon}</span>
-              {!collapsed && <span className="ml-3">{item.name}</span>}
-            </NavLink>
-          ))}
+          <div
+            onClick={handleLogout}
+            className="flex items-center px-3 py-3 rounded-lg cursor-pointer transition-colors text-gray-300 hover:bg-gray-700 hover:text-white"
+          >
+            <FaSignOutAlt />
+            {!collapsed && <span className="ml-3">Logout</span>}
+          </div>
         </nav>
       </aside>
     </>

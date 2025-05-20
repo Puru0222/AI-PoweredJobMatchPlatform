@@ -1,12 +1,12 @@
 import React from "react";
 import Sidebar from "../../component/Sidebar";
 import { Outlet, Link } from "react-router-dom";
-import { FaBell, FaEnvelope, FaSearch, FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
+import { useSelector, useStore } from "react-redux";
 
 const Dashboard = () => {
-  const user = {
-    name: "Alex Johnson",
-  };
+
+  const user = useSelector((state) => state.user);
 
   return (
     <div className="min-h-screen flex ">
