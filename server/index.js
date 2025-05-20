@@ -3,7 +3,9 @@ const app = express();
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const fileUpload = require("express-fileupload");
+// const fileUpload = require("express-fileupload");
+const authRoutes = require("./routes/auth")
+const jobRoutes = require("./routes/job")
 const dotenv = require("dotenv");
 
 const PORT = process.env.PORT || 4000;
@@ -18,12 +20,15 @@ app.use(
     credentials: true,
   })
 );
-app.use(
-  fileUpload({
-    useTempFiles: true,
-    tempFileDir: "/tmp/",
-  })
-);
+// app.use(
+//   fileUpload({
+//     useTempFiles: true,
+//     tempFileDir: "/tmp/",
+//   })
+// );
+
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/job", jobRoutes);
 
 app.get("/", (req, res) => {
   return res.json({
