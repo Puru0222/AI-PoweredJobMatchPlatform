@@ -15,11 +15,7 @@ const Home = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <div
-        className="min-h-screen bg-cover bg-center relative"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.4)), url(${img})`,
-          backgroundAttachment: "fixed",
-        }}
+        className="min-h-screen bg-custom-bg bg-cover bg-center relative"
       >
         <header className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg border-b border-white border-opacity-20 sticky top-0 z-10">
           <div className="container mx-auto px-4 py-3 flex justify-between items-center relative">

@@ -2,18 +2,9 @@ import { toast } from "react-hot-toast";
 import { apiConnector } from "./apiConnector";
 import { endpoints } from "./apis";
 
-const {
-  SIGNUP_API,
-  LOGIN_API,
-} = endpoints;
+const { SIGNUP_API, LOGIN_API } = endpoints;
 
-
-export function signUp(
-  name,
-  email,
-  password,
-  navigate
-) {
+export function signUp(name, email, password, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
     try {
@@ -32,25 +23,25 @@ export function signUp(
   };
 }
 
-export function login(loginEmail, loginPassword, navigate) {
+export function login(email, password, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
     try {
       const response = await apiConnector("POST", LOGIN_API, {
-        email: loginEmail,
-        password: loginPassword,
+        email,
+        password,
       });
 
-      if (!response.data.success) {
-        toast.error(response.data.message);
-        toast.dismiss(toastId);
-        return;
-      }
+      // if (!response.data.success) {
+      //   toast.error(response.data.message);
+      //   toast.dismiss(toastId);
+      //   return;
+      // }
       toast.success("Login Successful");
-    //   dispatch(setToken(response.data.token));
-    //   dispatch(setUser(response.data.user));
-    //   localStorage.setItem("token", JSON.stringify(response.data.token));
-      navigate("/home");
+      //   dispatch(setToken(response.data.token));
+      //   dispatch(setUser(response.data.user));
+      //   localStorage.setItem("token", JSON.stringify(response.data.token));
+      navigate("/dashboard");
     } catch (error) {
       toast.error(
         error.response?.data?.message ||
