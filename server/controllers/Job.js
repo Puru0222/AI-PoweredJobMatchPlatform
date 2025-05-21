@@ -61,7 +61,6 @@ exports.getAllJobs = async (req, res) => {
 };
 
 exports.aiMatch = async (req, res) => {
-  console.log("third");
 
   try {
     const { userProfile, jobs } = req.body;
@@ -74,7 +73,6 @@ exports.aiMatch = async (req, res) => {
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    // Create prompt for Gemini
     const prompt = `
     I need to find the top 3 job matches for a user based on their profile and available jobs.
     
@@ -119,9 +117,8 @@ exports.aiMatch = async (req, res) => {
     }
     `;
 
-        console.log(prompt)
+    console.log(prompt)
 
-    // Generate content with Gemini
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const textResponse = response.text();

@@ -43,7 +43,7 @@ const Jobs = () => {
           onClick={findAiMatches}
           disabled={isLoading}
         >
-          {isLoading ? "Matching..." : "AI Match"}
+          {isLoading ? "Matching..." : "Find My Matches"}
         </button>
       </div>
 
