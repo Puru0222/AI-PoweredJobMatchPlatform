@@ -1,29 +1,16 @@
-// src/redux/slices/userProfileSlice.js
-import { createSlice } from '@reduxjs/toolkit';
-
-const initialState = {
-  location: '',
-  experience: 0,
-  skills: [],
-  preferredJobType: 'any',
-};
+import { createSlice } from "@reduxjs/toolkit";
 
 const userProfileSlice = createSlice({
-  name: 'userProfile',
-  initialState,
+  name: "userProfile",
+  initialState: {
+    userProfile: null,
+  },
   reducers: {
     setUserProfile: (state, action) => {
-      const { location, experience, skills, preferredJobType } = action.payload;
-      state.location = location || '';
-      state.experience = experience || 0;
-      state.skills = skills || [];
-      state.preferredJobType = preferredJobType || 'any';
+      state.userProfile = action.payload;
     },
     clearUserProfile: (state) => {
-      state.location = '';
-      state.experience = 0;
-      state.skills = [];
-      state.preferredJobType = 'any';
+      state.userProfile = null;
     },
   },
 });

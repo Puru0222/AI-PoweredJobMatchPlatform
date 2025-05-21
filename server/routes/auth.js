@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { login, signup } = require("../controllers/Auth");
+const { login, signup, getUserProfile, updateOrCreateUserProfile } = require("../controllers/Auth");
+const { authenticate } = require("../middleware/authenticate");
 
 router.post("/login", login);
 router.post("/signup", signup);
-// router.post("/sendotp", sendotp);
+router.get("/getprofile", authenticate, getUserProfile);
+router.put("/update", authenticate, updateOrCreateUserProfile);
+router.post("/update", authenticate, updateOrCreateUserProfile);
 
 module.exports = router;

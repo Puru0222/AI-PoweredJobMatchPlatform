@@ -6,7 +6,6 @@ const initialState = {
   name: '',
   email: '',
   token: '',
-  isAuthenticated: false,
 };
 
 const userSlice = createSlice({
@@ -19,14 +18,12 @@ const userSlice = createSlice({
       state.name = name;
       state.email = email;
       state.token = token;
-      state.isAuthenticated = true;
     },
     clearUser: (state) => {
       state.id = null;
       state.name = '';
       state.email = '';
       state.token = '';
-      state.isAuthenticated = false;
     },
   },
 });
