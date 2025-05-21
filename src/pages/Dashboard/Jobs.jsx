@@ -7,7 +7,7 @@ const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const [matchedJobs, setMatchedJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const {userProfile} = useSelector((state) => state.userProfile);
+  const { userProfile } = useSelector((state) => state.userProfile);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -19,10 +19,13 @@ const Jobs = () => {
   }, [dispatch]);
 
   const findAiMatches = async () => {
-    setIsLoading(true);
-    console.log("first")
+    if (!userProfile || userProfile.location == "" || Object.keys(userProfile).length === 0) {
+      alert("Please complete your profile before using AI job match.");
+      return;
+    }
+    if (userProfile) setIsLoading(true);
     try {
-      const matched = await dispatch(matchJob(userProfile, jobs)); // ← note the extra ()
+      const matched = await dispatch(matchJob(userProfile, jobs));
       setMatchedJobs(matched);
     } catch (error) {
       console.error("Error during AI matching:", error);
@@ -34,7 +37,7 @@ const Jobs = () => {
   return (
     <div className="bg-white/10 text-white p-4 rounded-lg">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold mb-6">Available Jobs</h1>
+        <h1 className="text-2xl font-bold mb-3">Jobs</h1>
         <button
           className="text-xl items-center font-bold bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition"
           onClick={findAiMatches}

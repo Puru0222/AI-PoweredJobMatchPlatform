@@ -63,7 +63,7 @@ const Home = () => {
                   <FaRegUser /> Sign Up
                 </button>
               </Link>
-              <Link to="/home">
+              <Link to="/dashboard/jobs">
                 <button className="text-white hover:text-indigo-300 px-3 md:px-4 py-1.5 md:py-2 transition-colors underline decoration-1 underline-offset-4 text-sm md:text-base">
                   Guest Access
                 </button>
@@ -90,7 +90,7 @@ const Home = () => {
               <FaRegUser /> Sign Up
             </Link>
             <Link
-              to="/home"
+              to="/dashboard/jobs"
               className="text-white hover:text-indigo-300 transition-colors underline decoration-1 underline-offset-4"
             >
               Guest Access

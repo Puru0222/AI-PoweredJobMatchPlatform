@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen flex ">
-      <div className="bg-gray-700 border-r border-gray-600">
+      <div className="bg-gray-900 border-r border-gray-600">
         <Sidebar />
       </div>
 

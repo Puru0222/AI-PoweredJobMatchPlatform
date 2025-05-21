@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   FaUser,
-  FaBriefcase,
   FaSearch,
-  FaBookmark,
   FaSignOutAlt,
   FaChevronLeft,
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+import { IoIosCreate } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { logout } from "../services/authAPI";
 
@@ -27,8 +26,7 @@ const Sidebar = () => {
   const navigation = [
     { name: "Profile", path: "profile", icon: <FaUser /> },
     { name: "Find Jobs", path: "jobs", icon: <FaSearch /> },
-    { name: "AI JOB MATCHUP", path: "aijobmatch", icon: <FaBriefcase /> },
-    { name: "Saved Jobs", path: "saved", icon: <FaBookmark /> },
+    { name: "Create Job", path: "createjob", icon: <IoIosCreate /> },
   ];
 
   const activeStyle = "bg-indigo-600 text-white";
@@ -46,7 +44,7 @@ const Sidebar = () => {
 
       {/* Mobile toggle button */}
       <button
-        className="fixed top-4 left-4 z-20 md:hidden bg-gray-800 text-white p-2 rounded-lg shadow-lg"
+        className="fixed top-4 left-4 z-20 md:hidden bg-gray-700 text-white p-2 rounded-lg shadow-lg"
         onClick={() => setMobileOpen(!mobileOpen)}
       >
         {mobileOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -58,7 +56,7 @@ const Sidebar = () => {
           fixed md:static top-0 left-0 z-30
           h-screen overflow-y-auto 
           transition-all duration-300 ease-in-out 
-          bg-gray-900 text-white shadow-lg
+          bg-gray-900 text-white
           ${collapsed ? "w-20" : "w-64"}
           ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
         `}
