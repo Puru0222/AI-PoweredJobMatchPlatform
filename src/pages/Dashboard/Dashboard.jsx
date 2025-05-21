@@ -26,13 +26,13 @@ const Dashboard = () => {
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto bg-custom-bg bg-cover bg-center bg-fixed pt-20 px-6">
+        <main className="flex-1 overflow-y-auto bg-custom-bg bg-cover bg-center bg-fixed pt-16 px-6">
           <div className="container mx-auto">
-            <div className="text-sm text-gray-400 mb-6">
-              Dashboard / <span className="text-white">Current Page</span>
-            </div>
+            <p className="text-gray-400 mb-2 text-lg">
+              Dashboard 
+            </p>
 
-            <div className="bg-black/40 rounded-lg shadow-lg p-6 border border-gray-700">
+            <div className="bg-black/40 rounded-lg shadow-lg p-1 border border-gray-700">
               <Outlet />
             </div>
           </div>

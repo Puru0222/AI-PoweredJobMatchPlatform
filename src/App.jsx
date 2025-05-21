@@ -7,6 +7,7 @@ import Profile from "./pages/Dashboard/Profile";
 import Jobs from "./pages/Dashboard/Jobs";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CreateJobForm from "./component/CreateJobForm";
+import AiMatchup from "./pages/Dashboard/AiMatchup";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />}>
         <Route path="profile" element={<Profile />} />
         <Route path="jobs" element={<Jobs />} />
+        <Route path="aijobmatch" element={<AiMatchup />} />
       </Route>
       <Route
         path="*"

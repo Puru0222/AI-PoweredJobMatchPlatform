@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 import { jobendpoints } from "./apis";
 import { apiConnector } from "./apiConnector";
 
-const { CREATE_JOB, GET_JOB } = jobendpoints;
+const { CREATE_JOB, GET_JOB, MATCH_JOB } = jobendpoints;
 
 export function createJob(jobData) {
   return async (dispatch) => {
@@ -12,7 +12,6 @@ export function createJob(jobData) {
 
       toast.success("Job created successfully!");
       console.log("Created Job:", response.data);
-
 
       //navigate("/dashboard/jobs");
     } catch (error) {
@@ -36,10 +35,31 @@ export function getAllJobs() {
       return response.data.jobs;
     } catch (error) {
       toast.dismiss(toastId);
-      toast.error(
-        error.response?.data?.message || "Failed to fetch jobs"
-      );
+      toast.error(error.response?.data?.message || "Failed to fetch jobs");
       return [];
+    }
+  };
+}
+
+export function matchJob(userProfile, jobs) {
+
+  return async (dispatch) => {
+    const toastId = toast.loading("Matching jobs...");
+    try {
+      const response = await apiConnector("POST", MATCH_JOB, {
+        userProfile,
+        jobs,
+      });
+
+      toast.success("Job Matched");
+      return response.data.matchedJobs;
+    } catch (error) {
+      toast.error("Failed to find matching jobs", { id: toastId });
+      console.error("Error matching jobs:", error);
+      return [];
+    }
+    finally {
+      toast.dismiss(toastId);
     }
   };
 }

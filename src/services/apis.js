@@ -11,5 +11,6 @@ export const endpoints = {
 export const jobendpoints = {
   CREATE_JOB: BASE_URL + "/job/create",
   GET_JOB: BASE_URL + "/job/getjob",
+  MATCH_JOB: BASE_URL + "/job/jobmatch"
 };
 

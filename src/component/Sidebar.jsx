@@ -27,7 +27,7 @@ const Sidebar = () => {
   const navigation = [
     { name: "Profile", path: "profile", icon: <FaUser /> },
     { name: "Find Jobs", path: "jobs", icon: <FaSearch /> },
-    { name: "My Applications", path: "applications", icon: <FaBriefcase /> },
+    { name: "AI JOB MATCHUP", path: "aijobmatch", icon: <FaBriefcase /> },
     { name: "Saved Jobs", path: "saved", icon: <FaBookmark /> },
   ];
 

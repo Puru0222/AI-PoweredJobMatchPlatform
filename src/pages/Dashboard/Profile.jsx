@@ -44,14 +44,9 @@ const Profile = () => {
     await dispatch(saveUserProfile(formData, isEditing, token));
     setLoading(false);
   };
-  // if (!userProfile) {
-  //   return <div>Loading profile...</div>;
-  // }
-  console.log("Second")
-  console.log(userProfile)
   
   return (
-    <div className="text-white">
+    <div className="text-white p-4">
       <h1 className="text-2xl font-bold mb-6">
         {isEditing ? "Edit Your Profile" : "Create Your Profile"}
       </h1>
