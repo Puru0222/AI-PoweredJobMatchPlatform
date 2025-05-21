@@ -7,3 +7,9 @@ export const endpoints = {
   GET_PROFILE_API: BASE_URL + "/auth/getprofile",
   UPDATE_PROFILE_API: BASE_URL + "/auth/update",
 };
+
+export const jobendpoints = {
+  CREATE_JOB: BASE_URL + "/job/create",
+  GET_JOB: BASE_URL + "/job/getjob",
+};
+

@@ -1,12 +1,9 @@
 const express = require("express");
+const { createJob, getAllJobs } = require("../controllers/Job");
 const router = express.Router();
-// const {
-//   aiSearch,
-//   create,
-// } = require("../controllers/Job");
 
 // router.post("/aiSearch", aiSearch);
-// router.post("/create", create);
-
+router.post("/create", createJob);
+router.get("/getjob", getAllJobs);
 
 module.exports = router;
